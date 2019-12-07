@@ -63,7 +63,7 @@ export function OrderOptions(props) {
           checked={ascIsSelected}
           onChange={handleChange}
         />
-        <span>A &rarr; Z</span>
+        <span>Asc.</span>
       </label>
 
       <label className={clsx(styles.option, descIsSelected && styles.selected)}>
@@ -74,7 +74,7 @@ export function OrderOptions(props) {
           checked={descIsSelected}
           onChange={handleChange}
         />
-        <span>Z &rarr; A</span>
+        <span>Desc.</span>
       </label>
     </div>
   );
