@@ -13,6 +13,7 @@ If I were to iterate on this, I would:
     - Use a CSS loader to show loading state.
     - Include and link to more relevant data in the UserView.
     - Use `Suspense` and `ErrorBoundary` for optimal asnyc experience.
+    - Disable order options when "best match" sort option is selected.
 - Refactor
     - Absctract out the presentational component from `SortOptions` and `OrderOptions`
     - Abstract out more styling literal values into the theme.
