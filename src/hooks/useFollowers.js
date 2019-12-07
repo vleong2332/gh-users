@@ -9,8 +9,9 @@ export function useFollowers(user) {
 
   useEffect(() => {
     if (user === undefined) return;
-    console.log('getting followers', user.followers_url);
+
     setStatus(STATUS.BUSY);
+    
     axios
       .get(user.followers_url)
       .then(resp => {

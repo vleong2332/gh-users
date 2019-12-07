@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
 
-import { QueryBox } from '../QueryBox';
-import { SortOptions } from '../SortOptions';
-import { OrderOptions } from '../OrderOptions';
+import { QueryBox } from './QueryBox';
+import { SortOptions } from './SortOptions';
+import { OrderOptions } from './OrderOptions';
 
 const useStyles = createUseStyles((theme) => ({
   searchForm: {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
-    paddingBottom: theme.spacing(3),
     borderBottom: `1px dotted rgba(0,0,0,0.12)`,
+    paddingBottom: theme.spacing(3),
   },
   sortOptions: {
     marginTop: theme.spacing(3),
@@ -28,6 +28,8 @@ export function SearchForm(props) {
   const [orderBy, setOrderBy] = useState('');
   const styles = useStyles(props);
 
+  // One second may be too slow for some, but we're trying to be conservative due lower request
+  // limit. Could be tweaked later.
   return (
     <div className={styles.searchForm}>
       <div>

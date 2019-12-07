@@ -10,17 +10,17 @@ export const ORDER_BY = {
 
 const useStyles = createUseStyles((theme) => ({
   label: {
-    textAlign: 'center',
     marginBottom: theme.spacing(1),
+    textAlign: 'center',
   },
   option: {
     display: 'inline-block',
-    padding: theme.spacing(1),
     border: `1px solid rgba(255,255,255,0.25)`,
-    cursor: 'pointer',
+    padding: theme.spacing(1),
     backgroundColor: 'rgba(255,255,255,0)',
-    transition: 'all 150ms ease-in-out',
     fontSize: theme.typography.body2,
+    cursor: 'pointer',
+    transition: 'all 150ms ease-in-out',
     '&:first-of-type': {
       borderTopLeftRadius: 8,
       borderBottomLeftRadius: 8,
@@ -45,7 +45,6 @@ const useStyles = createUseStyles((theme) => ({
 }));
 
 export function OrderOptions(props) {
-  // TODO: Maybe accept initial value. Use-case: copy-pasted URL
   const { onChange = () => {} } = props;
   const [selected, setSelected] = useState(ORDER_BY.DEFAULT);
   const styles = useStyles();
@@ -66,6 +65,7 @@ export function OrderOptions(props) {
         />
         <span>A &rarr; Z</span>
       </label>
+
       <label className={clsx(styles.option, descIsSelected && styles.selected)}>
         <input
           type="radio"

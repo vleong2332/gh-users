@@ -9,9 +9,11 @@ export function useFollowing(user) {
 
   useEffect(() => {
     if (user === undefined) return;
+
     const url = user.following_url.replace('{/other_user}', '');
-    console.log('getting following', url);
+
     setStatus(STATUS.BUSY);
+    
     axios
       .get(url)
       .then(resp => {

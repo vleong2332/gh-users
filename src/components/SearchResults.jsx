@@ -8,11 +8,11 @@ const useStyles = createUseStyles((theme) => ({
   },
   listItem: {
     display: 'flex',
-    cursor: 'pointer',
-    padding: 8,
-    transition: 'all 100ms ease-in-out',
     alignItems: 'center',
     borderRadius: 3,
+    padding: 8,
+    cursor: 'pointer',
+    transition: 'all 100ms ease-in-out',
     '&:hover': {
       backgroundColor: 'rgba(255,255,255,0.5)',
       color: theme.color.text.dark,
@@ -21,8 +21,8 @@ const useStyles = createUseStyles((theme) => ({
   avatar: {
     width: 48,
     height: 48,
-    borderRadius: '50%',
     marginRight: theme.spacing(2),
+    borderRadius: '50%',
   }
 }));
 
@@ -38,11 +38,15 @@ export function SearchResults(props) {
       {status === 'busy' && <p>Loading...</p>}
       {status === 'fail' && <p>Something went wrong. Please try another search.</p>}
       {status === 'ok' && isEmpty && <p>No results. Search for another user.</p>}
-      {status === 'ok' && !isEmpty && (
+      {status === 'ok' && (
         <ul className={styles.list}>
           {userList.map((user) => (
             <li key={user.id} className={styles.listItem} onClick={(e) => handleClick(e, user)}>
-              <img src={user.avatar_url} alt={`Avatar for user ${user.login}`} className={styles.avatar} />
+              <img
+                className={styles.avatar}
+                src={user.avatar_url}
+                alt={`Avatar for user ${user.login}`}
+              />
               <span>{user.login}</span>
             </li>
           ))}
@@ -52,7 +56,6 @@ export function SearchResults(props) {
   );
   
   function handleClick(e, user) {
-    console.log('result is clicked', user);
     onUserClick(user);
   }
 }

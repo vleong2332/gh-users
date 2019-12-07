@@ -16,6 +16,7 @@ const useGlobalStyles = createUseStyles((theme) => ({
       fontSize: theme.typography.rootFontSize,
       backgroundColor: theme.color.background.base,
       color: theme.color.text.onBackground,
+      ...theme.scrollbar(),
     },
     h1: {
       margin: 0,

@@ -11,17 +11,17 @@ export const SORT_BY = {
 
 const useStyles = createUseStyles((theme) => ({
   label: {
-    textAlign: 'center',
     marginBottom: theme.spacing(1),
+    textAlign: 'center',
   },
   option: {
     display: 'inline-block',
-    padding: theme.spacing(1),
     border: `1px solid rgba(255,255,255,0.25)`,
-    cursor: 'pointer',
+    padding: theme.spacing(1),
     backgroundColor: 'rgba(255,255,255,0)',
-    transition: 'all 150ms ease-in-out',
     fontSize: theme.typography.body2,
+    transition: 'all 150ms ease-in-out',
+    cursor: 'pointer',
     '&:first-of-type': {
       borderTopLeftRadius: 8,
       borderBottomLeftRadius: 8,
@@ -46,7 +46,6 @@ const useStyles = createUseStyles((theme) => ({
 }));
 
 export function SortOptions(props) {
-  // TODO: Maybe accept initial value. Use-case: copy-pasted URL
   const { onChange = () => {} } = props;
   const [selected, setSelected] = useState(SORT_BY.DEFAULT);
   const styles = useStyles();

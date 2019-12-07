@@ -9,8 +9,9 @@ export function useRepos(user) {
 
   useEffect(() => {
     if (user === undefined) return;
-    // console.log('getting following', `${user.repos_url}?type=owner&per_page=5`);
+
     setStatus(STATUS.BUSY);
+    
     axios
       .get(`${user.repos_url}?type=owner&per_page=5&sort=updated`)
       .then(resp => {

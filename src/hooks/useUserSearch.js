@@ -8,8 +8,8 @@ export function useUserSearch() {
   const [status, setStatus] = useState(STATUS.IDLE);
 
   function search(options) {
-    console.log('searching', options);
     setStatus(STATUS.BUSY);
+    
     axios
       .get(`https://api.github.com/search/users?q=${options.query || ''}&sort=${options.sortBy || ''}&order=${options.orderBy || ''}&page=1&per_page=20`)
       .then(resp => {
