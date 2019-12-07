@@ -116,7 +116,7 @@ export function UserView(props) {
             src={user.avatar_url}
             alt={`Avatarfor user ${user.login}`}
           />
-          <h1>{user.login}</h1>
+          <h1><a href={user.html_url}>{user.login}</a></h1>
         </div>
 
         <div className={styles.row}>

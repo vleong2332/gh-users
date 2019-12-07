@@ -21,6 +21,9 @@ const useGlobalStyles = createUseStyles((theme) => ({
     h1: {
       margin: 0,
     },
+    a: {
+      color: theme.color.text.onBackground,
+    },
   },
 }));
 
