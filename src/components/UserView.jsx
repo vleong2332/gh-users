@@ -24,6 +24,7 @@ const useStyles = createUseStyles((theme) => ({
     overflow: 'auto',
     backgroundColor: 'white',
     color: theme.color.text.dark,
+    borderRadius: 6,
   },
   modalNav: {
     paddingBottom: theme.spacing(2),
@@ -55,6 +56,9 @@ const useStyles = createUseStyles((theme) => ({
   },
   scrollingContainer: {
     overflowY: 'auto',
+  },
+  listHeader: {
+    margin: `${theme.spacing(3)}px 0 ${theme.spacing(1)}px`,
   },
   list: {
     padding: 0,
@@ -103,7 +107,7 @@ export function UserView(props) {
 
         <div className={styles.row}>
           <div className={styles.twoColumns}>
-            <h4>Followers</h4>
+            <h4 className={styles.listHeader}>Followers</h4>
             <div className={styles.scrollingContainer}>
               {followersStatus === 'busy' && <p>Loading...</p>}
               {followersStatus === 'ok' && (
@@ -120,7 +124,7 @@ export function UserView(props) {
           </div>
 
           <div className={styles.twoColumns}>
-            <h4>Following</h4>
+            <h4 className={styles.listHeader}>Following</h4>
             <div className={styles.scrollingContainer}>
               {followingStatus === 'busy' && <p>Loading...</p>}
               {followingStatus === 'ok' && (
@@ -137,7 +141,7 @@ export function UserView(props) {
           </div>
         </div>
 
-        <h4>Top 5 Repositories</h4>
+        <h4 className={styles.listHeader}>Top 5 Repositories</h4>
         {repoStatus === 'busy' && <p>Loading...</p>}
         {repoStatus === 'ok' && (
           <ul className={styles.list}>
