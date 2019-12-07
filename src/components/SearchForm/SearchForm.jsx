@@ -6,11 +6,18 @@ import { SortOptions } from '../SortOptions';
 import { OrderOptions } from '../OrderOptions';
 
 const useStyles = createUseStyles((theme) => ({
+  searchForm: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    paddingBottom: theme.spacing(3),
+    borderBottom: `1px dotted rgba(0,0,0,0.12)`,
+  },
   sortOptions: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(3),
   },
   orderOptions: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(1),
   },
 }));
 
@@ -22,7 +29,7 @@ export function SearchForm(props) {
   const styles = useStyles(props);
 
   return (
-    <div>
+    <div className={styles.searchForm}>
       <div>
         <QueryBox onChange={handleQueryChange} bounceRate={1000} />
       </div>

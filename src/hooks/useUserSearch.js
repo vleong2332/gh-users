@@ -11,7 +11,7 @@ export function useUserSearch() {
     console.log('searching', options);
     setStatus(STATUS.BUSY);
     axios
-      .get(`https://api.github.com/search/users?q=${options.query || ''}&sort=${options.sort || ''}&order=${options.order || ''}&page=1&per_page=20`)
+      .get(`https://api.github.com/search/users?q=${options.query || ''}&sort=${options.sortBy || ''}&order=${options.orderBy || ''}&page=1&per_page=20`)
       .then(resp => {
         setStatus(STATUS.OK);
         setUserList(resp.data.items);

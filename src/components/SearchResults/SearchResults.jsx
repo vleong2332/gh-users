@@ -4,14 +4,25 @@ import { createUseStyles } from 'react-jss';
 const useStyles = createUseStyles((theme) => ({
   list: {
     listStyle: 'none',
+    padding: 0,
   },
   listItem: {
     display: 'flex',
     cursor: 'pointer',
+    padding: 8,
+    transition: 'all 100ms ease-in-out',
+    alignItems: 'center',
+    borderRadius: 3,
+    '&:hover': {
+      backgroundColor: 'rgba(255,255,255,0.5)',
+      color: theme.color.text.dark,
+    }
   },
   avatar: {
     width: 48,
     height: 48,
+    borderRadius: '50%',
+    marginRight: theme.spacing(2),
   }
 }));
 

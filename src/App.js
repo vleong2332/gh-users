@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { ThemeProvider } from 'react-jss';
-import { theme as baseTheme } from './themes/base';
+import { createUseStyles } from 'react-jss';
 
 import 'normalize.css';
 import './App.css';
@@ -11,29 +10,52 @@ import { SearchResults } from './components/SearchResults';
 import { UserView } from './components/UserView';
 import { useUserSearch } from './hooks/useUserSearch';
 
-function App() {
+const useGlobalStyles = createUseStyles((theme) => ({
+  '@global': {
+    html: {
+      fontSize: theme.typography.rootFontSize,
+      backgroundColor: theme.color.background.base,
+      color: theme.color.text.onBackground,
+    },
+    h1: {
+      margin: 0,
+    },
+  },
+}));
+
+const useStyles = createUseStyles((theme) => ({
+  app: {
+    minWidth: 320,
+    maxWidth: 540,
+    margin: `0 auto`,
+    padding: theme.spacing(3),
+  },
+}));
+
+function App(props) {
+  useGlobalStyles();
   const { userList, status, search } = useUserSearch();
   const [selectedUser, setSelectedUser] = useState(undefined);
   const [showUserView, setShowUserView] = useState(false);
+  const styles = useStyles(props);
 
   return (
-    <ThemeProvider theme={baseTheme}>
-      <div className="App">
-        <header>
-          <h1>Github User Search</h1>
-        </header>
-        <main>
-          <SearchForm onSearch={search} />
-          <SearchResults userList={userList} onUserClick={handleUserClick} status={status} />
-          <UserView hid={!showUserView} user={selectedUser} />
-        </main>
-      </div>
-    </ThemeProvider>
+    <div className={styles.app}>
+      <main>
+        <SearchForm onSearch={search} />
+        <SearchResults userList={userList} onUserClick={handleUserClick} status={status} />
+        <UserView hid={!showUserView} user={selectedUser} onDismiss={handleViewDismiss} />
+      </main>
+    </div>
   );
 
   function handleUserClick(user) {
     setSelectedUser(user);
     setShowUserView(true);
+  }
+
+  function handleViewDismiss() {
+    setShowUserView(false);
   }
 }
 

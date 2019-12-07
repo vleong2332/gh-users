@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { createUseStyles } from 'react-jss';
+import clsx from 'clsx';
 
 export const SORT_BY = {
   DEFAULT: 'best_match',
@@ -10,14 +11,36 @@ export const SORT_BY = {
 
 const useStyles = createUseStyles((theme) => ({
   label: {
-    marginRight: theme.spacing(2),
+    textAlign: 'center',
+    marginBottom: theme.spacing(1),
   },
   option: {
-    '&:not(:last-of-type)': {
-      marginRight: theme.spacing(2),
+    display: 'inline-block',
+    padding: theme.spacing(1),
+    border: `1px solid rgba(255,255,255,0.25)`,
+    cursor: 'pointer',
+    backgroundColor: 'rgba(255,255,255,0)',
+    transition: 'all 150ms ease-in-out',
+    fontSize: theme.typography.body2,
+    '&:first-of-type': {
+      borderTopLeftRadius: 8,
+      borderBottomLeftRadius: 8,
+    },
+    '&:last-of-type': {
+      borderTopRightRadius: 8,
+      borderBottomRightRadius: 8,
+    },
+    '&:hover': {
+      backgroundColor: 'rgba(255,255,255,0.1)',
     },
     '& > input': {
-      marginRight: theme.spacing(1),
+      '-webkit-appearance': 'none',
+    }
+  },
+  selected: {
+    backgroundColor: 'rgba(255,255,255,0.2)',
+    '&:hover': {
+      backgroundColor: 'rgba(255,255,255,0.2)',
     }
   }
 }));
@@ -27,27 +50,53 @@ export function SortOptions(props) {
   const { onChange = () => {} } = props;
   const [selected, setSelected] = useState(SORT_BY.DEFAULT);
   const styles = useStyles();
+  const defaultIsSelected = selected === SORT_BY.DEFAULT;
+  const followersIsSelected = selected === SORT_BY.FOLLOWERS;
+  const reposIsSelected = selected === SORT_BY.REPOS;
+  const joinedIsSelected = selected === SORT_BY.JOINED;
 
-  // TODO: Styling. Focus state, hover state, disabled state.
-  // TODO: Accessibility. Label, and aria-*
-  // TODO: A button to clear value.
   return (
     <div>
-      <label className={styles.label}>Sort by:</label>
-      <label className={styles.option}>
-        <input type="radio" name="sortBy" value={SORT_BY.DEFAULT} checked={selected === SORT_BY.DEFAULT} onChange={handleChange} />
+      <div className={styles.label}>Sort</div>
+      
+      <label className={clsx(styles.option, defaultIsSelected && styles.selected)}>
+        <input
+          type="radio"
+          name="sortBy"
+          value={SORT_BY.DEFAULT}
+          checked={defaultIsSelected}
+          onChange={handleChange}
+        />
         <span>Best match</span>
       </label>
-      <label className={styles.option}>
-        <input type="radio" name="sortBy" value={SORT_BY.FOLLOWERS} checked={selected === SORT_BY.FOLLOWERS} onChange={handleChange} />
+      <label className={clsx(styles.option, followersIsSelected && styles.selected)}>
+        <input
+          type="radio"
+          name="sortBy"
+          value={SORT_BY.FOLLOWERS}
+          checked={followersIsSelected}
+          onChange={handleChange}
+        />
         <span>Followers</span>
       </label>
-      <label className={styles.option}>
-        <input type="radio" name="sortBy" value={SORT_BY.REPOS} checked={selected === SORT_BY.REPOS} onChange={handleChange} />
+      <label className={clsx(styles.option, reposIsSelected && styles.selected)}>
+        <input
+          type="radio"
+          name="sortBy"
+          value={SORT_BY.REPOS}
+          checked={reposIsSelected}
+          onChange={handleChange}
+        />
         <span>Repositories</span>
       </label>
-      <label className={styles.option}>
-        <input type="radio" name="sortBy" value={SORT_BY.JOINED} checked={selected === SORT_BY.JOINED} onChange={handleChange} />
+      <label className={clsx(styles.option, joinedIsSelected && styles.selected)}>
+        <input
+          type="radio"
+          name="sortBy"
+          value={SORT_BY.JOINED}
+          checked={joinedIsSelected}
+          onChange={handleChange}
+        />
         <span>Date joined</span>
       </label>
     </div>

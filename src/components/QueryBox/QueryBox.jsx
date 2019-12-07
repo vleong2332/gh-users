@@ -4,17 +4,17 @@ import debounce from 'lodash/debounce';
 
 const useStyles = createUseStyles((theme) => ({
   input: {
-    marginLeft: theme.spacing(2),
-    padding: `${theme.spacing(2)}px ${theme.spacing(1)}px`,
-    backgroundColor: 'transparent',
     border: 'none',
-    borderBottom: '2px solid orange',
-    color: theme.color.lightText.base,
-    caretColor: theme.color.lightText.base,
-    outline: 'none',
-    transition: 'border-bottom 300ms ease-in-out',
+    borderRadius: 3,
+    padding: `${theme.spacing(2)}px ${theme.spacing(1)}px`,
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    transition: 'all 150ms ease-in-out',
+    width: 300,
+    color: theme.color.text.light,
     '&:focus': {
-      borderBottomColor: 'darkorange',
+      backgroundColor: 'rgba(255,255,255,0.95)',
+      outline: 'none',
+      color: theme.color.text.dark,
     }
   },
 }));
@@ -30,10 +30,7 @@ export function QueryBox(props) {
   // TODO: Accessibility. Label, and aria-*
   // TODO: A button to clear value.
   return (
-    <label>
-      <span>Search</span>
-      <input type='text' value={value} onChange={handleChange} className={styles.input} placeholder='Users' />
-    </label>
+    <input type='text' value={value} onChange={handleChange} className={styles.input} placeholder='Search users...' />
   );
 
   function handleChange(e) {
