@@ -1,19 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { createUseStyles } from 'react-jss';
 
 import { useFollowers } from '../hooks/useFollowers';
 import { useFollowing } from '../hooks/useFollowing';
 import { useRepos } from '../hooks/useRepos';
+import { Layover } from './Layover';
 
 const useStyles = createUseStyles((theme) => ({
-  layover: {
-    position: 'fixed',
-    width: '100%',
-    height: '100%',
-    top: 0,
-    left: 0,
-    backgroundColor: 'rgba(0,0,0,0.5)',
-  },
   modal: {
     minWidth: 300,
     maxWidth: 768,
@@ -89,21 +82,15 @@ const useStyles = createUseStyles((theme) => ({
   },
 }));
 
-const body = document.querySelector('body');
-
 export function UserView(props) {
-  const { hid = true, user, onDismiss = () => {} } = props;
+  const { hid = true, user = {}, onDismiss = () => {} } = props;
   const styles = useStyles(props);
   const { followerList, status: followersStatus } = useFollowers(user);
   const { followingList, status: followingStatus } = useFollowing(user);
   const { repoList, status: repoStatus } = useRepos(user);
 
-  useEffect(() => {
-    body.style.overflow = hid ? 'auto' : 'hidden';
-  }, [hid]);
-
-  return hid ? null : (
-    <div className={styles.layover}>
+  return (
+    <Layover hid={hid}>
       <div className={styles.modal}>
         
         <div className={styles.actions}>
@@ -178,7 +165,7 @@ export function UserView(props) {
           </ul>
         )}
       </div>
-    </div>
+    </Layover>
   );
 
   function handleBackClick() {

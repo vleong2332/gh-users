@@ -8,12 +8,12 @@ export function useFollowing(user) {
   const [status, setStatus] = useState(STATUS.IDLE);
 
   useEffect(() => {
-    if (user === undefined) return;
+    if (user.following_url === undefined) return;
 
     const url = user.following_url.replace('{/other_user}', '');
 
     setStatus(STATUS.BUSY);
-    
+
     axios
       .get(url)
       .then(resp => {

@@ -8,7 +8,7 @@ export function useFollowers(user) {
   const [status, setStatus] = useState(STATUS.IDLE);
 
   useEffect(() => {
-    if (user === undefined) return;
+    if (user.followers_url === undefined) return;
 
     setStatus(STATUS.BUSY);
     

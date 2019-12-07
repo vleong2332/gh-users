@@ -8,10 +8,10 @@ export function useRepos(user) {
   const [status, setStatus] = useState(STATUS.IDLE);
 
   useEffect(() => {
-    if (user === undefined) return;
+    if (user.repos_url === undefined) return;
 
     setStatus(STATUS.BUSY);
-    
+
     axios
       .get(`${user.repos_url}?type=owner&per_page=5&sort=updated`)
       .then(resp => {
